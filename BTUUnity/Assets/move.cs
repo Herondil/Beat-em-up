@@ -8,6 +8,7 @@ public class move : MonoBehaviour
     public Vector2  direction;
     public float speed;
     public Rigidbody2D _rgbd;
+    public bool Jumping;
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +19,29 @@ public class move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (Jumping)
+        {
+            //la direction ne change pas ?
+            direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        }
+        else
+        {
+            direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        }
+        
     }
 
     private void FixedUpdate()
     {
-        _rgbd.velocity = direction * speed;
+        if (Jumping)
+        {
+            //on a l"influence du saut
+            _rgbd.transform.Translate(new Vector2(direction.x*speed, transform.position.y));
+        }
+        else
+        {
+            _rgbd.velocity = direction * speed;
+        }
+        
     }
 }
