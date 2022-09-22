@@ -8,15 +8,15 @@ public class JumpBehaviour : StateMachineBehaviour
     public  float JumpDuration = 5f;
     private float JumpStartClock;
     private Animator _animations;
-    private Rigidbody2D _shadowBody;
-    public FixedJoint2D j;
+    //private Rigidbody2D _shadowBody;
+    //public FixedJoint2D j;
 
 
     private void Awake()
     {
         _animations  = GameObject.Find("Graphics").GetComponent<Animator>();
-        _shadowBody  = GameObject.Find("Shadow").GetComponent<Rigidbody2D>();
-        j = _shadowBody.GetComponent<FixedJoint2D>(); 
+        //_shadowBody  = GameObject.Find("Shadow").GetComponent<Rigidbody2D>();
+        //j = _shadowBody.GetComponent<FixedJoint2D>(); 
     }
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -35,8 +35,8 @@ public class JumpBehaviour : StateMachineBehaviour
         {
             animator.SetTrigger("EndJump");
             //fin de l'animation
-            _shadowBody.constraints = RigidbodyConstraints2D.None;
-            j.enabled = true;
+            //_shadowBody.constraints = RigidbodyConstraints2D.None;
+            //j.enabled = true;
         }
     }
 
